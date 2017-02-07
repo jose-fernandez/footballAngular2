@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { JornadasService } from '../jornadas.service';
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +10,17 @@ import { Component, OnInit } from '@angular/core';
 
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+	private competition: number;
+  constructor( private servicio:JornadasService) {
+  	this.competition=436;
+  }
 
   ngOnInit() {
+  	
+  }
+
+  getCompetition(){
+  	this.servicio.getLeague(this.competition);
   }
 
 }

@@ -13,6 +13,7 @@ import { JornadasService } from './jornadas.service';
 import { JornadasComponent } from './jornadas/jornadas.component';
 
 
+
 // Se definen las rutas de la app. Cada una se corresponde con un componente
 const routes: Routes = [
     // La ruta '' indica la ruta por defecto (antiguo index.html)
@@ -42,6 +43,7 @@ export const routing = RouterModule.forRoot(routes);
     BrowserModule,
     FormsModule,
     AlertModule.forRoot(),
+
     HttpModule,
     routing
   ],

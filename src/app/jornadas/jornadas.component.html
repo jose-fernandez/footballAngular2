@@ -1,3 +1,4 @@
-<p>
-  jornadas works!
-</p>
+<div class="list-group">
+  <a *ngIf="!competition">lalala</a>
+  <div href="#" *ngFor="let team of competition.fixtures" class="list-group-item list-group-item-action">{{team.awayTeamName}}</div>
+</div>

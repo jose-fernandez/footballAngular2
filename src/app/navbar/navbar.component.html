@@ -7,6 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
+        <img class="leagueIcon" src="../images/competiciones/{{competition}}.png">
         <a [routerLink]="['/']" class="navbar-brand">
         	<div class="cont-logo">
 	        	<img class="logo" src="../../images/logo.png">
@@ -17,18 +18,21 @@
     <!-- Collection of nav links, forms, and other content for toggling -->
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active"><a [routerLink]="['/Jornadas']">Jornadas</a></li>
+            <li routerLinkActive="active" (click)="getCompetition()"><a [routerLink]="['/Jornadas']">Jornadas</a></li>
             <li><a href="#">Clasificación</a></li>
         </ul>
 
         <form role="search" class="navbar-form navbar-right">
-            <select class="form-control">
-                <option>LFP</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
+            <select [(ngModel)]="competition" class="form-control" name="competition" (click)="getCompetition()">
+                <option value="436">Primera Division</option>
+                <option value="426">Premier League</option>
+                <option value="438">Serie A</option>
+                <option value="434">Ligue 1</option>
+                <option value="430">Bundesliga</option>
+                <option value="440">Champions League</option>
             </select>
-
         </form>
     </div>
 </nav>
+
 
