@@ -20,9 +20,10 @@ export class ClasificacionComponent implements OnInit {
   ngOnInit() {
     setTimeout(()=>{
       this.n++;
+      this.servicio.changeTeams();
       this.servicio.changeClasification();
       this.tabs(this.act);
-    },4000)
+    },300)
   	this.servicio.callClasification().subscribe(
         data => {
             this.listClasif=data;
@@ -32,8 +33,6 @@ export class ClasificacionComponent implements OnInit {
     this.servicio.callTeams().subscribe(
         data => {
             this.listTeams=data;
-            if(this.listTeams)
-              console.log(this.listTeams)
         });
     
   }

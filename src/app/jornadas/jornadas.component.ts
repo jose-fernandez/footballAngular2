@@ -27,7 +27,7 @@ export class JornadasComponent implements OnInit {
       this.pagination=this.servicio.getPagination();
       this.date=this.servicio.varDate();
       this.schedule=this.jornadas[this.date]
-    },4000)
+    },300)
 
     this.servicio.callLeague().subscribe(
         data => {
@@ -39,6 +39,5 @@ export class JornadasComponent implements OnInit {
   }
   changeJornada(num){
     this.date=num
-    console.log(this.jornadas[num])
   }
 }

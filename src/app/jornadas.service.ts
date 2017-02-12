@@ -61,7 +61,8 @@ export class JornadasService {
       this.changeLeague();
       this.changeTeams();
       this.createJsonsClasif();
-    },4000);
+
+    },1400);
   }
   //Change Competition Code from Navbar.ts <select>
   changeSchedule(cod){
@@ -123,7 +124,7 @@ export class JornadasService {
 
   askTeams(){
     for (let i=0;i<this.codes.length;i++){
-      this.askTeam(this.codes[i]);
+      this.askTeam(this.codes[i],i);
     }
   }
 
@@ -145,26 +146,27 @@ export class JornadasService {
 ///////////////////////////////////////////////////////END OBSERVABLES////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////API CALLS////////////////////////////////////////////////////////////////////////////////
-  askTeam(cod){
+  askTeam(cod, i){
+    this.teams.push([])
     $.ajax({
       headers: { 'X-Auth-Token': this.key },
       url: `http://api.football-data.org/v1/competitions/${cod}/teams`,
       dataType: 'json',
       type: 'GET',
     }).done(response =>{
-      this.teams.push(response);
+      this.teams[i].push(response);
     });
   }
 
   askClasification(cod, i){
-    // this.clasif.push([]);
+    this.clasif.push([]);
     $.ajax({
       headers: { 'X-Auth-Token': this.key },
       url: `http://api.football-data.org/v1/competitions/${cod}/leagueTable`,
       dataType: 'json',
       type: 'GET',
     }).done(response =>{
-      this.clasif.push(response);
+      this.clasif[i].push(response);
     });
   }
 
@@ -230,45 +232,45 @@ export class JornadasService {
 
   createJsonClasif(index){
     this.listJson.push([]);
-    for(let j=0;j<this.clasif[index].standing.length;j++){
-        this.listJson[index].push(this.jsonClasif[j]={"total":{"pos":this.clasif[index].standing[j].position,
-                                     "img":this.clasif[index].standing[j].crestURI,
-                                     "name":this.clasif[index].standing[j].teamName,
-                                     "pts":this.clasif[index].standing[j].points,
-                                     "pg":this.clasif[index].standing[j].playedGames,
-                                     "win":this.clasif[index].standing[j].wins,
-                                     "draw":this.clasif[index].standing[j].draws,
-                                     "lose":this.clasif[index].standing[j].losses,
-                                     "goal":this.clasif[index].standing[j].goals,
-                                     "goalAg":this.clasif[index].standing[j].goalsAgainst},
+    for(let j=0;j<this.clasif[index][0].standing.length;j++){
+        this.listJson[index].push(this.jsonClasif[j]={"total":{"pos":this.clasif[index][0].standing[j].position,
+                                     "img":this.clasif[index][0].standing[j].crestURI,
+                                     "name":this.clasif[index][0].standing[j].teamName,
+                                     "pts":this.clasif[index][0].standing[j].points,
+                                     "pg":this.clasif[index][0].standing[j].playedGames,
+                                     "win":this.clasif[index][0].standing[j].wins,
+                                     "draw":this.clasif[index][0].standing[j].draws,
+                                     "lose":this.clasif[index][0].standing[j].losses,
+                                     "goal":this.clasif[index][0].standing[j].goals,
+                                     "goalAg":this.clasif[index][0].standing[j].goalsAgainst},
 
-                            "home":{ "pos":this.clasif[index].standing[j].position,
-                                     "img":this.clasif[index].standing[j].crestURI,
-                                     "name":this.clasif[index].standing[j].teamName,
-                                     "pts":(3*this.clasif[index].standing[j].home.wins+
-                                            this.clasif[index].standing[j].home.draws),
-                                     "pg":(this.clasif[index].standing[j].home.wins+
-                                            this.clasif[index].standing[j].home.losses+
-                                            this.clasif[index].standing[j].home.draws),
-                                     "win":this.clasif[index].standing[j].home.wins,
-                                     "draw":this.clasif[index].standing[j].home.draws,
-                                     "lose":this.clasif[index].standing[j].home.losses,
-                                     "goal":this.clasif[index].standing[j].home.goals,
-                                     "goalAg":this.clasif[index].standing[j].home.goalsAgainst},
+                            "home":{ "pos":this.clasif[index][0].standing[j].position,
+                                     "img":this.clasif[index][0].standing[j].crestURI,
+                                     "name":this.clasif[index][0].standing[j].teamName,
+                                     "pts":(3*this.clasif[index][0].standing[j].home.wins+
+                                            this.clasif[index][0].standing[j].home.draws),
+                                     "pg":(this.clasif[index][0].standing[j].home.wins+
+                                            this.clasif[index][0].standing[j].home.losses+
+                                            this.clasif[index][0].standing[j].home.draws),
+                                     "win":this.clasif[index][0].standing[j].home.wins,
+                                     "draw":this.clasif[index][0].standing[j].home.draws,
+                                     "lose":this.clasif[index][0].standing[j].home.losses,
+                                     "goal":this.clasif[index][0].standing[j].home.goals,
+                                     "goalAg":this.clasif[index][0].standing[j].home.goalsAgainst},
 
-                            "away":{ "pos":this.clasif[index].standing[j].position,
-                                     "img":this.clasif[index].standing[j].crestURI,
-                                     "name":this.clasif[index].standing[j].teamName,
-                                     "pts":(3*this.clasif[index].standing[j].away.wins+
-                                            this.clasif[index].standing[j].away.draws),
-                                     "pg":(this.clasif[index].standing[j].away.wins+
-                                            this.clasif[index].standing[j].away.losses+
-                                            this.clasif[index].standing[j].away.draws),
-                                     "win":this.clasif[index].standing[j].away.wins,
-                                     "draw":this.clasif[index].standing[j].away.draws,
-                                     "lose":this.clasif[index].standing[j].away.losses,
-                                     "goal":this.clasif[index].standing[j].away.goals,
-                                     "goalAg":this.clasif[index].standing[j].away.goalsAgainst}}
+                            "away":{ "pos":this.clasif[index][0].standing[j].position,
+                                     "img":this.clasif[index][0].standing[j].crestURI,
+                                     "name":this.clasif[index][0].standing[j].teamName,
+                                     "pts":(3*this.clasif[index][0].standing[j].away.wins+
+                                            this.clasif[index][0].standing[j].away.draws),
+                                     "pg":(this.clasif[index][0].standing[j].away.wins+
+                                            this.clasif[index][0].standing[j].away.losses+
+                                            this.clasif[index][0].standing[j].away.draws),
+                                     "win":this.clasif[index][0].standing[j].away.wins,
+                                     "draw":this.clasif[index][0].standing[j].away.draws,
+                                     "lose":this.clasif[index][0].standing[j].away.losses,
+                                     "goal":this.clasif[index][0].standing[j].away.goals,
+                                     "goalAg":this.clasif[index][0].standing[j].away.goalsAgainst}}
       )
     }
   }

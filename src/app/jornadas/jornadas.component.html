@@ -11,7 +11,7 @@
 <div class="list-group" [hidden]="n==0">
   	<div *ngFor="let team of jornadas[date] let i=index" class="list-group-item list-group-item-action">
   		<div class="containerMatch"  data-toggle="modal" attr.data-target="#{{i}}">
-  			<a class="info" href="javascript:void(0)">
+  			<a class="info" >
   				<span>{{team.date}}</span>
   				<span *ngIf="team.status==='POSTPONED'">POSPUESTO</span>
           <span *ngIf="team.status==='FINISHED'">FINALIZADO</span>
@@ -47,6 +47,7 @@
               <h3 *ngIf="team.status==='TIMED'">PROGRAMADO</h3>
               <h3 *ngIf="team.status==='CANCELED'">CANCELADO</h3>
               <h3 *ngIf="team.status==='IN_PLAY'">EN JUEGO</h3>
+              <div  *ngIf="team.odds">
               <p>Se paga a: </p>
               <table class="table">
                 <tfoot>
@@ -64,6 +65,7 @@
                   </tr>
                 </tfoot>
               </table>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
