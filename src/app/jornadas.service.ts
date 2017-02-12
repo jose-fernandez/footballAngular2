@@ -150,7 +150,7 @@ export class JornadasService {
     this.teams.push([])
     $.ajax({
       headers: { 'X-Auth-Token': this.key },
-      url: `http://api.football-data.org/v1/competitions/${cod}/teams`,
+      url: `https://api.football-data.org/v1/competitions/${cod}/teams`,
       dataType: 'json',
       type: 'GET',
     }).done(response =>{
@@ -162,7 +162,7 @@ export class JornadasService {
     this.clasif.push([]);
     $.ajax({
       headers: { 'X-Auth-Token': this.key },
-      url: `http://api.football-data.org/v1/competitions/${cod}/leagueTable`,
+      url: `https://api.football-data.org/v1/competitions/${cod}/leagueTable`,
       dataType: 'json',
       type: 'GET',
     }).done(response =>{
@@ -174,7 +174,7 @@ export class JornadasService {
     this.competitions.push([]);
     $.ajax({
       headers: { 'X-Auth-Token': this.key },
-      url: `http://api.football-data.org/v1/competitions/${cod}/fixtures`,
+      url: `https://api.football-data.org/v1/competitions/${cod}/fixtures`,
       dataType: 'json',
       type: 'GET',
     }).done(response =>{
