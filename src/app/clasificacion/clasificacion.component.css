@@ -1,0 +1,32 @@
+.active>a:focus, .active>a:hover, .active>a:active{
+	color:#555;
+	cursor: default;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+}
+img{
+	width: 15px;
+}
+
+.loader {
+  border: 8px solid #fff;
+  border-radius: 50%;
+  border-top: 8px solid #222222;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin-top: 35%;
+  margin: auto;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

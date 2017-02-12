@@ -1,4 +1,80 @@
-<div class="list-group">
-  <a *ngIf="!competition">lalala</a>
-  <div href="#" *ngFor="let team of competition.fixtures" class="list-group-item list-group-item-action">{{team.awayTeamName}}</div>
+<div class="loader" [hidden]="n==1"></div>
+
+<div class="container" [hidden]="n==0">
+  <ul class="pagination">
+    <li *ngFor="let num of pagination" [class.active]="date===num"><a (click)="changeJornada(num)" href="javascript:void(0)">{{num+1}}</a></li>
+    
+    
+  </ul>
 </div>
+
+<div class="list-group" [hidden]="n==0">
+  	<div *ngFor="let team of jornadas[date] let i=index" class="list-group-item list-group-item-action">
+  		<div class="containerMatch"  data-toggle="modal" attr.data-target="#{{i}}">
+  			<a class="info" href="javascript:void(0)">
+  				<span>{{team.date}}</span>
+  				<span *ngIf="team.status==='POSTPONED'">POSPUESTO</span>
+          <span *ngIf="team.status==='FINISHED'">FINALIZADO</span>
+          <span *ngIf="team.status==='SCHEDULED'">POR PROGRAMAR</span>
+          <span *ngIf="team.status==='TIMED'">PROGRAMADO</span>
+          <span *ngIf="team.status==='CANCELED'">CANCELADO</span>
+          <span *ngIf="team.status==='IN_PLAY'">EN JUEGO</span>
+  			</a>
+  			<a class="match" href="javascript:void(0)">
+	  			<a class="home">{{team.homeTeamName}}</a>
+	  			<div>
+		  			<span class="badge">{{team.result.goalsHomeTeam}}</span>
+		  			<span class="badge">{{team.result.goalsAwayTeam}}</span>
+	  			</div>
+	  			<a class="away"> {{team.awayTeamName}}</a>
+  			</a>
+  		</div>
+      	 <!-- Modal -->
+      <div class="modal fade" attr.id="{{i}}" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Jornada {{team.matchday}}</h4>
+            </div>
+            <div class="modal-body">
+              <p>{{team.homeTeamName}} VS {{team.awayTeamName}}</p>
+              <h3 *ngIf="team.status==='POSTPONED'">POSPUESTO</h3>
+              <h3 *ngIf="team.status==='FINISHED'">FINALIZADO</h3>
+              <h3 *ngIf="team.status==='SCHEDULED'">POR PROGRAMAR</h3>
+              <h3 *ngIf="team.status==='TIMED'">PROGRAMADO</h3>
+              <h3 *ngIf="team.status==='CANCELED'">CANCELADO</h3>
+              <h3 *ngIf="team.status==='IN_PLAY'">EN JUEGO</h3>
+              <p>Se paga a: </p>
+              <table class="table">
+                <tfoot>
+                  <tr>
+                    <th>{{team.homeTeamName}}</th>
+                    <th>{{team.odds.homeWin}}</th>
+                  </tr>
+                  <tr>
+                    <th>Empate</th>
+                    <th>{{team.odds.draw}}</th>
+                  </tr>
+                  <tr>
+                    <th>{{team.awayTeamName}}</th>
+                    <th>{{team.odds.awayWin}}</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+
+
+    

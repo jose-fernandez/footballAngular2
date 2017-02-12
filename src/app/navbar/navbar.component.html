@@ -19,17 +19,16 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li routerLinkActive="active" (click)="getCompetition()"><a [routerLink]="['/Jornadas']">Jornadas</a></li>
-            <li><a href="#">Clasificación</a></li>
+            <li routerLinkActive="active" (click)="getCompetition()"><a [routerLink]="['/Clasificacion']">Clasificación</a></li>
         </ul>
 
         <form role="search" class="navbar-form navbar-right">
-            <select [(ngModel)]="competition" class="form-control" name="competition" (click)="getCompetition()">
-                <option value="436">Primera Division</option>
-                <option value="426">Premier League</option>
-                <option value="438">Serie A</option>
-                <option value="434">Ligue 1</option>
-                <option value="430">Bundesliga</option>
-                <option value="440">Champions League</option>
+            <select [(ngModel)]="competition" (ngModelChange)="getCompetition($event)" class="form-control" name="competition">
+                <option value="0">Primera Division</option>
+                <option value="1">Premier League</option>
+                <option value="2">Serie A</option>
+                <option value="3">Ligue 1</option>
+                <option value="4">Bundesliga</option>
             </select>
         </form>
     </div>

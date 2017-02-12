@@ -1,0 +1,42 @@
+<div class="loader" [hidden]="n==1"></div>
+
+
+<ul class="nav nav-tabs" [hidden]="n==0">
+    <li (click)="tabs(0)" [class.active]="act===0"><a href="javascript:void(0)">Total</a></li>
+    <li (click)="tabs(1)" [class.active]="act===1"><a href="javascript:void(0)">Casa</a></li>
+    <li (click)="tabs(2)" [class.active]="act===2"><a href="javascript:void(0)">Fuera</a></li>
+</ul>
+<div class="table-responsive" [hidden]="n==0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Pos.</th>
+        <th>Equipo</th>
+        <th>Pts.</th>
+        <th>P.J.</th>
+        <th>P.G.</th>
+        <th>P.E.</th>
+        <th>P.P.</th>
+        <th>G.F.</th>
+        <th>G.C.</th>
+      </tr>
+    </thead>
+    <tfoot *ngIf="orderClasif">
+      <tr [ngClass]="{
+      info: team.pos<7 && team.pos>4,
+      danger: team.pos>17,
+      success:team.pos<5
+      }" *ngFor="let team of orderClasif">
+        <th>{{team.pos}}</th>
+        <th><img src="{{team.img}}">{{team.name}}</th>
+        <th>{{team.pts}}</th>
+        <th>{{team.pg}}</th>
+        <th>{{team.win}}</th>
+        <th>{{team.draw}}</th>
+        <th>{{team.lose}}</th>
+        <th>{{team.goal}}</th>
+        <th>{{team.goalAg}}</th>
+        </tr>
+    </tfoot>
+  </table>
+</div>

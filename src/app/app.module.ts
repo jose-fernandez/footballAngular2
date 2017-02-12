@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SliderComponent } from './slider/slider.component';
 import { JornadasService } from './jornadas.service';
 import { JornadasComponent } from './jornadas/jornadas.component';
+import { ClasificacionComponent } from './clasificacion/clasificacion.component';
 
 
 
@@ -18,8 +19,12 @@ import { JornadasComponent } from './jornadas/jornadas.component';
 const routes: Routes = [
     // La ruta '' indica la ruta por defecto (antiguo index.html)
     { path: '', component: SliderComponent },
-    { path: 'Jornadas', component: JornadasComponent },
-    //{ path: 'Clasificacion', component: DirectivasEstructuralesComponent },
+    { path: 'Jornadas', component: JornadasComponent},
+      // children:[
+      //     {path: "Detalles", component: DetalleJornadaComponent}
+
+      //   ] },
+    { path: 'Clasificacion', component: ClasificacionComponent },
 
     // { path: 'rutasHijas', component: RutasHijasYParametrosComponent,
     //     children:[
@@ -37,7 +42,8 @@ export const routing = RouterModule.forRoot(routes);
     AppComponent,
     NavbarComponent,
     SliderComponent,
-    JornadasComponent
+    JornadasComponent,
+    ClasificacionComponent
   ],
   imports: [
     BrowserModule,

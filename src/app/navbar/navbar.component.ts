@@ -12,15 +12,17 @@ import { JornadasService } from '../jornadas.service';
 export class NavbarComponent implements OnInit {
 	private competition: number;
   constructor( private servicio:JornadasService) {
-  	this.competition=436;
+    this.competition=0;
   }
 
   ngOnInit() {
-  	
+
   }
 
-  getCompetition(){
-  	this.servicio.getLeague(this.competition);
+  getCompetition(index){
+    if (index){
+      this.servicio.changeSchedule(index);
+    }
   }
 
 }
